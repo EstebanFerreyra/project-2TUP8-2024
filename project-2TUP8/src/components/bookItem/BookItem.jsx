@@ -1,7 +1,20 @@
 import PropTypes from "prop-types";
-import { Card } from "react-bootstrap";
+import { useState } from "react";
+import { Button, Card } from "react-bootstrap";
 
-const BookItem = ({ title, author, pageCount, rating, imageUrl }) => {
+const BookItem = ({ titleProp, author, pageCount, rating, imageUrl }) => {
+  const [title, setTitle] = useState(titleProp);
+
+  const [count, setCount] = useState(0);
+
+  const clickHandle = () => {
+    setTitle("Actualizado");
+  };
+
+  const incrementHandle = () => {
+    setCount(count + 10);
+  }
+
   return (
     <Card style={{ width: "22rem" }}>
       <Card.Img
@@ -14,13 +27,20 @@ const BookItem = ({ title, author, pageCount, rating, imageUrl }) => {
         <Card.Subtitle>{author}</Card.Subtitle>
         <div>{rating} estrellas</div>
         <p>{pageCount} páginas</p>
+        <p>Clicks: {count}</p>
+        <Button variant="primary" onClick={clickHandle}>
+          Actualizar
+        </Button>
+        <Button variant="primary" onClick={incrementHandle}>
+          +
+        </Button>
       </Card.Body>
     </Card>
   );
 };
 
 BookItem.propTypes = {
-  title: PropTypes.string,
+  titleProp: PropTypes.string,
   author: PropTypes.string,
   pageCount: PropTypes.number,
   rating: PropTypes.number,
