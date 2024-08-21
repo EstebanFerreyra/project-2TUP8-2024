@@ -7,7 +7,7 @@ const Books = ({ books }) => {
       {books.map((book) => (
         <BookItem
           key={book.id}
-          title={book.bookTitle}
+          titleProp={book.bookTitle}
           author={book.author}
           rating={book.bookRating.length}
           pageCount={book.pageCount}
