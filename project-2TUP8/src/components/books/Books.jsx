@@ -3,7 +3,14 @@ import BookItem from "../bookItem/BookItem";
 
 const Books = ({ books }) => {
   return (
-    <div>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        flexWrap: "wrap",
+        gap: "20px",
+      }}
+    >
       {books.map((book) => (
         <BookItem
           key={book.id}
