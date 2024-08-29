@@ -1,6 +1,8 @@
+import { useState } from "react";
 import Books from "./components/books/Books";
+import NewBook from "./components/newBook/NewBook";
 
-const booksData = [
+const BOOKS = [
   {
     id: 1,
     bookTitle: "100 años de soledad",
@@ -40,11 +42,23 @@ const booksData = [
 ];
 
 function App() {
+  const [books, setBooks] = useState(BOOKS);
+
+  const saveBookDataHandler = (enteredBookData) => {
+    const bookData = {
+      ...enteredBookData,
+      id: Math.random().toString(),
+    };
+
+    setBooks([bookData, ...books])
+  };
+
   return (
-    <div>
+    <div className="d-flex flex-column align-items-center">
       <h2>Books Champion App</h2>
       <p>¡Quiero leer libros!</p>
-      <Books books={booksData}/>
+      <NewBook onBookDataSaved={saveBookDataHandler} />
+      <Books books={books} />
     </div>
   );
 }
